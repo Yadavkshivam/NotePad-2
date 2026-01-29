@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="noteGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#6366F1"/>
+    </linearGradient>
+    <linearGradient id="penGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#EF4444"/>
+    </linearGradient>
+  </defs>
+  <!-- Notepad background -->
+  <rect x="8" y="6" width="40" height="52" rx="4" fill="url(#noteGrad)" opacity="0.9"/>
+  <!-- Paper -->
+  <rect x="12" y="10" width="32" height="44" rx="2" fill="#FFFFFF"/>
+  <!-- Lines on paper -->
+  <line x1="16" y1="20" x2="40" y2="20" stroke="#E5E7EB" stroke-width="1.5"/>
+  <line x1="16" y1="28" x2="40" y2="28" stroke="#E5E7EB" stroke-width="1.5"/>
+  <line x1="16" y1="36" x2="36" y2="36" stroke="#E5E7EB" stroke-width="1.5"/>
+  <line x1="16" y1="44" x2="32" y2="44" stroke="#E5E7EB" stroke-width="1.5"/>
+  <!-- Checkmarks -->
+  <path d="M18 19 L20 21 L24 17" stroke="#8B5CF6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M18 27 L20 29 L24 25" stroke="#8B5CF6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Pen -->
+  <g transform="rotate(-45, 52, 20)">
+    <rect x="46" y="8" width="8" height="36" rx="1" fill="url(#penGrad)"/>
+    <polygon points="46,44 50,52 54,44" fill="#374151"/>
+    <rect x="46" y="8" width="8" height="6" rx="1" fill="#FCD34D"/>
+  </g>
+</svg>
