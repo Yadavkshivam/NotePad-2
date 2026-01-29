@@ -1,17 +1,21 @@
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
+import dotenv from 'dotenv';
+dotenv.config();
+
 import authRoutes from './src/routes/authRoutes.js';
 import noteRoutes from './src/routes/noteRoutes.js';
 
 
 const app = express();
 
+console.log('CLIENT_ORIGIN:', process.env.CLIENT_ORIGIN);
 
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(cors({ 
-  origin: ["http://localhost:5173", "http://localhost:5174"],
+  origin: process.env.CLIENT_ORIGIN || "http://localhost:5173",
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
