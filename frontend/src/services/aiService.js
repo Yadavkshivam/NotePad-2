@@ -1,8 +1,8 @@
-const GEMINI_API_KEY = 'AIzaSyDhzfiT3A56AlFQeQcF_sLfIF2VYOUL5EU';
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
+// const GEMINI_API_KEY = 'AIzaSyBKvvuBy9lfa93VPKTzjjFi1GHMSXEGD4o';
+// const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
 
 export async function generateAINotes(content) {
-  if (!GEMINI_API_KEY) {
+  if (!import.meta.env.VITE_GEMINI_API_KEY) {
     throw new Error('Gemini API key is not configured.');
   }
 
@@ -22,7 +22,10 @@ ${content}
 Provide only the formatted notes, no additional commentary.`;
 
   try {
-    const response = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
+    const apiUrl = import.meta.env.VITE_GEMINI_API_URL;
+    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+    
+    const response = await fetch(`${apiUrl}?key=${apiKey}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -25,3 +25,16 @@ if (!note) return res.status(404).json({ message: 'Note not found' });
 await note.deleteOne();
 res.json({ message: 'Deleted' });
 }
+
+
+export async function updateNote(req, res) {
+const userId = req.user.sub;
+const { id } = req.params;
+const { title, content } = req.body;
+const note = await Note.findOne({ _id: id, user: userId });
+if (!note) return res.status(404).json({ message: 'Note not found' });
+if (title !== undefined) note.title = title;
+if (content !== undefined) note.content = content;
+await note.save();
+res.json(note);
+}
