@@ -10,12 +10,27 @@ import noteRoutes from './src/routes/noteRoutes.js';
 
 const app = express();
 
-console.log('CLIENT_ORIGIN:', process.env.CLIENT_ORIGIN);
+console.log('🌐 CLIENT_ORIGIN:', process.env.CLIENT_ORIGIN);
 
 app.use(express.json());
 app.use(morgan('dev'));
+
+// CORS configuration - supports multiple origins for dev and production
+const allowedOrigins = process.env.CLIENT_ORIGIN 
+  ? process.env.CLIENT_ORIGIN.split(',') 
+  : ['http://localhost:5173'];
+
 app.use(cors({ 
-  origin: process.env.CLIENT_ORIGIN || "http://localhost:5173",
+  origin: function(origin, callback) {
+    // Allow requests with no origin (mobile apps, Postman, etc)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
